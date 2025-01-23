@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de IMC</title>
+  <style>
+    .imc-calculator {
+      max-width: 300px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+    }
+
+    .imc-calculator h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .imc-calculator label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    .imc-calculator input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .imc-calculator button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .imc-calculator button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="imc-calculator">
+    <h2>Calculadora de IMC</h2>
+    <form id="imcForm">
+      <label for="weight">Peso (kg):</label>
+      <input type="number" id="weight" placeholder="Ex.: 70" required>
+
+      <label for="height">Altura (m):</label>
+      <input type="number" id="height" step="0.01" placeholder="Ex.: 1.75" required>
+
+      <button type="submit">Calcular</button>
+    </form>
+    <div id="imcResult" class="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('imcForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value);
+
+      if (weight > 0 && height > 0) {
+        const imc = (weight / (height * height)).toFixed(2);
+        let classification = '';
+
+        if (imc < 18.5) {
+          classification = 'Abaixo do peso';
+        } else if (imc >= 18.5 && imc < 24.9) {
+          classification = 'Peso normal';
+        } else if (imc >= 25 && imc < 29.9) {
+          classification = 'Sobrepeso';
+        } else if (imc >= 30 && imc < 34.9) {
+          classification = 'Obesidade grau I';
+        } else if (imc >= 35 && imc < 39.9) {
+          classification = 'Obesidade grau II';
+        } else {
+          classification = 'Obesidade grau III';
+        }
+
+        document.getElementById('imcResult').textContent = 
+          `Seu IMC é ${imc} (${classification}).`;
+      } else {
+        document.getElementById('imcResult').textContent = 
+          'Por favor, insira valores válidos.';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -75,12 +75,17 @@
       margin-top: 15px;
       border: none;
       border-radius: 8px;
-      background-color: rgba(0, 255, 0);
+      background-color: #666; /* Cor mais escura inicialmente */
       color: black;
       font-size: 1rem;
       font-weight: bold;
-      cursor: pointer;
+      cursor: not-allowed;
       transition: all 0.3s ease;
+    }
+
+    button.enabled {
+      background-color: rgba(0, 255, 0);
+      cursor: pointer;
     }
 
     button:hover {
@@ -105,11 +110,36 @@
   <div class="form-container">
     <h1>Me mande uma mensagem!</h1>
     <form action="https://formsubmit.co/ericrochagoncalves59@gmail.com" method="POST">
-      <input type="email" name="email" required placeholder="Seu email">
-      <textarea name="message" rows="5" required placeholder="Sua mensagem"></textarea>
+      <input type="email" name="email" id="email" required placeholder="Seu email">
+      <textarea name="message" id="message" rows="5" required placeholder="Sua mensagem"></textarea>
       <input type="hidden" name="_template" value="table">
-      <button type="submit">Enviar</button>
+      <button type="submit" id="submitButton" disabled>Enviar</button>
     </form>
   </div>
+
+  <script>
+    // Função para verificar se os campos estão preenchidos
+    function verificarCampos() {
+      var email = document.getElementById('email');
+      var message = document.getElementById('message');
+      var submitButton = document.getElementById('submitButton');
+
+      // Se ambos os campos estiverem preenchidos, habilita o botão
+      if (email.value.trim() !== '' && message.value.trim() !== '') {
+        submitButton.disabled = false;
+        submitButton.classList.add('enabled'); // Ativa o botão
+      } else {
+        submitButton.disabled = true;
+        submitButton.classList.remove('enabled'); // Desativa o botão
+      }
+    }
+
+    // Adiciona eventos de input para verificar os campos enquanto o usuário digita
+    document.getElementById('email').addEventListener('input', verificarCampos);
+    document.getElementById('message').addEventListener('input', verificarCampos);
+    
+    // Chama a função ao carregar para garantir que o botão comece desativado
+    verificarCampos();
+  </script>
 </body>
 </html>

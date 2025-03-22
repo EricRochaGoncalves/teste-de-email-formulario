@@ -75,7 +75,7 @@
       margin-top: 15px;
       border: none;
       border-radius: 8px;
-      background-color: #666; /* Cor mais escura inicialmente */
+      background-color: #666;
       color: black;
       font-size: 1rem;
       font-weight: bold;
@@ -111,6 +111,7 @@
     <h1>Entre em contato!</h1>
     <form action="https://formsubmit.co/ericrochagoncalves59@gmail.com" method="POST">
       <input type="email" name="email" id="email" required placeholder="Seu email">
+      <input type="tel" name="phone" id="phone" required placeholder="Seu telefone">
       <textarea name="message" id="message" rows="5" required placeholder="Sua mensagem"></textarea>
       <input type="hidden" name="_template" value="table">
       <button type="submit" id="submitButton" disabled>Enviar</button>
@@ -121,11 +122,12 @@
     // Função para verificar se os campos estão preenchidos
     function verificarCampos() {
       var email = document.getElementById('email');
+      var phone = document.getElementById('phone');
       var message = document.getElementById('message');
       var submitButton = document.getElementById('submitButton');
 
-      // Se ambos os campos estiverem preenchidos, habilita o botão
-      if (email.value.trim() !== '' && message.value.trim() !== '') {
+      // Se todos os campos estiverem preenchidos, habilita o botão
+      if (email.value.trim() !== '' && phone.value.trim() !== '' && message.value.trim() !== '') {
         submitButton.disabled = false;
         submitButton.classList.add('enabled'); // Ativa o botão
       } else {
@@ -136,6 +138,7 @@
 
     // Adiciona eventos de input para verificar os campos enquanto o usuário digita
     document.getElementById('email').addEventListener('input', verificarCampos);
+    document.getElementById('phone').addEventListener('input', verificarCampos);
     document.getElementById('message').addEventListener('input', verificarCampos);
     
     // Chama a função ao carregar para garantir que o botão comece desativado

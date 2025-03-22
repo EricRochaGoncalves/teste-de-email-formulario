@@ -1,148 +1,140 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Envie uma mensagem!</title>
-  <style>
-    /* Reset de estilo */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<!DOCTYPE html>  <html lang="pt-br">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Envie uma mensagem!</title>  
+  <style>  
+    /* Reset de estilo */  
+    * {  
+      margin: 0;  
+      padding: 0;  
+      box-sizing: border-box;  
+    }  /* Estilo do corpo */  
+body {  
+  background-color: #121212;  
+  font-family: Arial, sans-serif;  
+  color: white;  
+  display: flex;  
+  justify-content: center;  
+  align-items: center;  
+  height: 100vh;  
+}  
 
-    /* Estilo do corpo */
-    body {
-      background-color: #121212;
-      font-family: Arial, sans-serif;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+/* Container do formulário */  
+.form-container {  
+  background: linear-gradient(145deg, #1c1c1c, #292929);  
+  padding: 20px 30px;  
+  border-radius: 12px;  
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);  
+  text-align: center;  
+  width: 100%;  
+  max-width: 400px;  
+}  
 
-    /* Container do formulário */
-    .form-container {
-      background: linear-gradient(145deg, #1c1c1c, #292929);
-      padding: 20px 30px;
-      border-radius: 12px;
-      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      width: 100%;
-      max-width: 400px;
-    }
+/* Título */  
+h1 {  
+  margin-bottom: 20px;  
+  font-size: 1.8rem;  
+  font-weight: bold;  
+  color: #fff;  
+}  
 
-    /* Título */
-    h1 {
-      margin-bottom: 20px;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: #fff;
-    }
+/* Campo de entrada */  
+input,  
+textarea {  
+  width: 100%;  
+  padding: 12px 15px;  
+  margin: 10px 0;  
+  border: none;  
+  border-radius: 8px;  
+  background-color: #1c1c1c;  
+  color: white;  
+  font-size: 1rem;  
+  outline: none;  
+  transition: all 0.3s ease;  
+}  
 
-    /* Campo de entrada */
-    input,
-    textarea {
-      width: 100%;
-      padding: 12px 15px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      background-color: #1c1c1c;
-      color: white;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s ease;
-    }
+input::placeholder,  
+textarea::placeholder {  
+  color: #aaa;  
+}  
 
-    input::placeholder,
-    textarea::placeholder {
-      color: #aaa;
-    }
+input:focus,  
+textarea:focus {  
+  background-color: #292929;  
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);  
+}  
 
-    input:focus,
-    textarea:focus {
-      background-color: #292929;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    }
+/* Botão */  
+button {  
+  width: 100%;  
+  padding: 12px 15px;  
+  margin-top: 15px;  
+  border: none;  
+  border-radius: 8px;  
+  background-color: #666; /* Cor mais escura inicialmente */  
+  color: black;  
+  font-size: 1rem;  
+  font-weight: bold;  
+  cursor: not-allowed;  
+  transition: all 0.3s ease;  
+}  
 
-    /* Botão */
-    button {
-      width: 100%;
-      padding: 12px 15px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 8px;
-      background-color: #666;
-      color: black;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: not-allowed;
-      transition: all 0.3s ease;
-    }
+button.enabled {  
+  background-color: rgba(0, 255, 0);  
+  cursor: pointer;  
+}  
 
-    button.enabled {
-      background-color: rgba(0, 255, 0);
-      cursor: pointer;
-    }
+button:hover {  
+  background-color: #0288d1;  
+  transform: scale(1.05);  
+  color: white;  
+}  
 
-    button:hover {
-      background-color: #0288d1;
-      transform: scale(1.05);
-      color: white;
-    }
+/* Responsividade */  
+@media (max-width: 400px) {  
+  h1 {  
+    font-size: 1.5rem;  
+  }  
 
-    /* Responsividade */
-    @media (max-width: 400px) {
-      h1 {
-        font-size: 1.5rem;
-      }
+  button {  
+    font-size: 0.9rem;  
+  }  
+}
 
-      button {
-        font-size: 0.9rem;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="form-container">
-    <h1>Entre em contato!</h1>
-    <form action="https://formsubmit.co/ericrochagoncalves59@gmail.com" method="POST">
-      <input type="email" name="email" id="email" required placeholder="Seu email">
-      <input type="tel" name="phone" id="phone" required placeholder="Seu telefone">
-      <textarea name="message" id="message" rows="5" required placeholder="Sua mensagem"></textarea>
-      <input type="hidden" name="_template" value="table">
-      <button type="submit" id="submitButton" disabled>Enviar</button>
-    </form>
-  </div>
-
-  <script>
-    // Função para verificar se os campos estão preenchidos
-    function verificarCampos() {
-      var email = document.getElementById('email');
-      var phone = document.getElementById('phone');
-      var message = document.getElementById('message');
-      var submitButton = document.getElementById('submitButton');
-
-      // Se todos os campos estiverem preenchidos, habilita o botão
-      if (email.value.trim() !== '' && phone.value.trim() !== '' && message.value.trim() !== '') {
-        submitButton.disabled = false;
-        submitButton.classList.add('enabled'); // Ativa o botão
-      } else {
-        submitButton.disabled = true;
-        submitButton.classList.remove('enabled'); // Desativa o botão
-      }
-    }
-
-    // Adiciona eventos de input para verificar os campos enquanto o usuário digita
-    document.getElementById('email').addEventListener('input', verificarCampos);
-    document.getElementById('phone').addEventListener('input', verificarCampos);
-    document.getElementById('message').addEventListener('input', verificarCampos);
-    
-    // Chama a função ao carregar para garantir que o botão comece desativado
-    verificarCampos();
-  </script>
-</body>
+  </style>  
+</head>  
+<body>  
+  <div class="form-container">  
+    <h1>Entre em contato!</h1>  
+    <form action="https://formsubmit.co/ericrochagoncalves59@gmail.com" method="POST">  
+      <input type="email" name="email" id="email" required placeholder="Seu email">  
+      <textarea name="message" id="message" rows="5" required placeholder="Sua mensagem"></textarea>  
+      <input type="hidden" name="_template" value="table">  
+      <button type="submit" id="submitButton" disabled>Enviar</button>  
+    </form>  
+  </div>    <script>  
+    // Função para verificar se os campos estão preenchidos  
+    function verificarCampos() {  
+      var email = document.getElementById('email');  
+      var message = document.getElementById('message');  
+      var submitButton = document.getElementById('submitButton');  
+  
+      // Se ambos os campos estiverem preenchidos, habilita o botão  
+      if (email.value.trim() !== '' && message.value.trim() !== '') {  
+        submitButton.disabled = false;  
+        submitButton.classList.add('enabled'); // Ativa o botão  
+      } else {  
+        submitButton.disabled = true;  
+        submitButton.classList.remove('enabled'); // Desativa o botão  
+      }  
+    }  
+  
+    // Adiciona eventos de input para verificar os campos enquanto o usuário digita  
+    document.getElementById('email').addEventListener('input', verificarCampos);  
+    document.getElementById('message').addEventListener('input', verificarCampos);  
+      
+    // Chama a função ao carregar para garantir que o botão comece desativado  
+    verificarCampos();  
+  </script>  </body>  
 </html>
